@@ -107,8 +107,8 @@
         url: "{{item.URL}}"
         dest: "{{item.dest}}"
       with_items:
-        - { URL: 'https://github.com/carreerit/cogito/raw/master/appstack/student.war', dest: '/opt/apache-tomcat-9.0.1/webapps/student.war' }
-        - { URL: 'https://github.com/carreerit/cogito/raw/master/appstack/mysql-connector-java-5.1.40.jar', dest: '/opt/apache-tomcat-9.0.1/lib/mysql-connector-java-5.1.40.jar' }
+        - { URL: 'https://github.com/Linuxmatrix/appstack/blob/master/student.war', dest: '/opt/apache-tomcat-9.0.1/webapps/student.war' }
+        - { URL: 'https://github.com/Linuxmatrix/appstack/blob/master/mysql-connector-java-5.1.40.jar', dest: '/opt/apache-tomcat-9.0.1/lib/mysql-connector-java-5.1.40.jar' }
         
     - name: Update Context.xml 
       copy:
