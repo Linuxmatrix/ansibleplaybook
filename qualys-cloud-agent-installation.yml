@@ -1,0 +1,40 @@
+---
+- name: Install Qualys Agent
+  hosts: Linux
+  tasks:
+    - copy:
+        src: /opt/Proxy
+        dest: /opt
+    - name: enable Proxy
+      shell: cat /opt/Proxy >> /etc/environment
+    - name: Install qualys agent on RedHat
+      yum :
+        name:  http://192.168.120.x/script/Qualys/qualys-cloud-agent.x86_64.rpm
+        state: present
+      when: ansible_os_family == "RedHat"
+      register: redhat_installation
+    - name: Install qualys agent on Debian
+      apt:
+        deb: http://192.168.120.x/script/Qualys/qualys-cloud-agent.x86_64.deb
+      when: ansible_os_family == "Debian"
+      register: debian_installation
+    - name: register redhat node
+      shell: /usr/local/qualys/cloud-agent/bin/qualys-cloud-agent.sh ActivationId="d36f2a58-8312-4736-9477-aa1cce5ae733" CustomerId="9c0e25de-0221-5af6-e040-10ac13043f6a" >> /tmp/qualys.log
+      when: (ansible_os_family == "RedHat") and (redhat_installation is succeeded)
+    - name: register debian node
+      shell: /usr/local/qualys/cloud-agent/bin/qualys-cloud-agent.sh ActivationId="d36f2a58-8312-4736-9477-aa1cce5ae733" CustomerId="9c0e25de-0221-5af6-e040-10ac13043f6a" >> /tmp/qualys.log
+      when: (ansible_os_family == "Debian") and (debian_installation is succeeded)
+    - name: enable qualys service
+      service:
+        name: qualys-cloud-agent
+        enabled: yes
+      when: ((debian_installation is succeeded) or (redhat_installation is succeeded)) and (ansible_os_family != "Windows")
+
+    - name: get the qualys exe
+      win_get_url:
+        url: https://{{qualysServer}}/qualys/QualysCA_Windows.exe
+        dest: C:\Users\Administrator\Downloads
+        url_username: "{{username}}"
+        url_password: "{{password}}"
+      when: ansible_os_family == "Windows"
+      register: download_exe
