@@ -1,0 +1,28 @@
+- name: Install CrowdStrik Agent
+  hosts: Linux
+  tasks:
+    - name: Install CrowdStriks agent using yum
+      yum :
+        name:  http://192.168.x./script/falcon-sensor-4.5.0-5015.el7.x86_64.rpm
+        state: present
+      when: ansible_os_family == "RedHat"
+      register: redhat_installation
+    - name: Install CrowdStriks agent using apt-get
+      apt:
+        deb: http://192.168.x/script/
+      when: ansible_os_family == "Debian"
+      register: debian_installation
+    - name: set customer id for falcon sensor
+      shell: /opt/CrowdStrike/falconctl -s --cid=D96C92BDFB0946B589727FF82FB4601A-9E
+      when: cs_falcon_pkg_install
+    - name: optionally  proxy
+      shell: /opt/CrowdStrike/falconctl -s --aph=http-proxy.x.com --app=88
+   # - name: optionally proxy
+   #   shell:  /opt/CrowdStrike/falconctl -g --aph --app
+   # - name: Proxy
+   #   shell: /opt/CrowdStrike/falconctl -s --apd=FALSE"
+   #   when: cs_falcon_pkg_install and cs_falcon_remove_agent_id
+    - name: ensure falcon sensor process is started
+      service:
+        name: falcon-sensor
+        state: started
