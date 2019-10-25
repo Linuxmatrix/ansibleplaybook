@@ -29,7 +29,6 @@
         name: qualys-cloud-agent
         enabled: yes
       when: ((debian_installation is succeeded) or (redhat_installation is succeeded)) and (ansible_os_family != "Windows")
-
     - name: get the qualys exe
       win_get_url:
         url: https://{{qualysServer}}/qualys/QualysCA_Windows.exe
@@ -38,3 +37,7 @@
         url_password: "{{password}}"
       when: ansible_os_family == "Windows"
       register: download_exe
+    - name: install qualys on windows
+      win_command: C:\Users\Administrator\Downloads\QualysCA_Windows.exe ActivationId={{activationId}} CustomerId={{customerId}}
+      when: (ansible_os_family == "Windows") and (download_exe is succeeded)
+                                                                                 
