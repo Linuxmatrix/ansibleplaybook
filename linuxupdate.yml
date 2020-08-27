@@ -1,0 +1,21 @@
+---
+- hosts: all
+  tasks:
+   - name: install packages  on RHEL based distros
+     yum:
+       name:
+        - httpd
+        - zip
+        - unzip
+       state: latest
+       update_cache: true
+     when: ansible_os_family == 'RedHat'
+   - name: install ftp  on Debian based distros
+     apt:
+      name: ftp
+      state: present
+      update_cache: true
+     when: ansible_os_family == 'Debian'
+~
+~
+~
