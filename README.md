@@ -193,7 +193,7 @@ message2: *greet
 | Comment                   | `# this is a comment`       |   |
 | Boolean                   | `true`, `false` (lowercase) |   |
 | Null value                | `key: null` or just `key:`  |   |
-| Multi-line (preserve)     | `|`                         |   |
+| Multi-line (preserve)     | `\|`                         |   |
 | Multi-line (folded)       | `>`                         |   |
 | Include block from anchor | `<<: *anchor_name`          |   |
  YAML Types
