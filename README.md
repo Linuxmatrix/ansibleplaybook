@@ -206,7 +206,9 @@ message2: *greet
 | Multi-line String | `| `or`>`            | block style for text          | see above |
 | Anchor            | `&anchor`            | assign a reference            | `defaults: &defaults {...}` |           |
 | Alias             | `*alias`             | reference anchor              | `<<: *defaults`             |           |
-Common Gotchas & Tips
+
+
+# Common Gotchas & Tips
 
 | Topic                                                | Tip / Best Practice                                               |                                             |
 | ---------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------- |
@@ -264,15 +266,16 @@ Common Gotchas & Tips
 
 ---
 
-### Multi-line Strings
+## Multi-line Strings
 
 | Concept                | Example                                                        | Practice                                                      |                                                               |                                                   |
-| ---------------------- | -------------------------------------------------------------- | ------------------------------------------------------------- | 
-| Literal Block  (` | `) | `description   | <br> This is line 1.<br> This is line 2.`           | Write a literal block `note` with 3 lines of text |
-| Folded Block (`>`)     | `summary: > <br> This is a folded string.<br> New lines fold.` | Create a folded block `message` with 2 lines that should fold |        |                                                   |
-| Keep trailing newline  | Use `| +` to keep newline after block     | Write a multi-line string `poem` that keeps trailing newlin                                   |
-| Strip trailing newline | Use ` | -` to remove trailing newline   | Write a multi-line string `log` that strips trailing newlin                                       |
+| ---------------------- | -------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------- |
+| Literal Block (`       | `)                                                             | `description:                                                 | <br> This is line 1.<br> This is line 2.`                     | Write a literal block `note` with 3 lines of text |
+| Folded Block (`>`)     | `summary: > <br> This is a folded string.<br> New lines fold.` | Create a folded block `message` with 2 lines that should fold |                                                               |                                                   |
+| Keep trailing newline  | Use `                                                          | +` to keep newline after block                                | Write a multi-line string `poem` that keeps trailing newlines |                                                   |
+| Strip trailing newline | Use `                                                          | -` to remove trailing newline                                 | Write a multi-line string `log` that strips trailing newlines |                                                   |
 
+---
 ---
 
 ### Anchors & Aliases (References)
