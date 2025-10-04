@@ -174,12 +174,13 @@ hello: &greet "Hello, World!"
 message1: *greet
 message2: *greet
 ```
+#  YAML Practice Cheat Sheet
 | Rule                           | Example                          |
 | ------------------------------ | -------------------------------- |
 | Use 2 spaces only              | No tabs allowed                  |
 | Quote special characters       | `"abc@123"`                      |
 | Lists must be properly aligned | `- item1`                        |
-| Always validate your YAML      | `yamllint`, `kubectl`, `ansible` |
+| Always validate your YAML      | `yamllint`,  `ansible`           |
 | Avoid duplicate keys           | Use unique keys                  |
 | Start with `---` (optional)    | Especially in Ansible/Kubernetes |
 | Comment with `#`               | `# this is a comment`            |
@@ -218,58 +219,59 @@ Common Gotchas & Tips
 | Merging maps                                         | Use `<<:` merge key to combine anchors                            |                                             |
 | Avoid mixing flow and block styles in same structure | For readability and consistency                                   |       
 
-
-#  YAML Practice Cheat Sheet
-
+#  Quick Syntax Reference
+| Syntax                   | Usage                    | Example                      |        |   |
+| ------------------------ | ------------------------ | ---------------------------- | ------ | - |
+| `key: value`             | Scalar key-value pair    | `name: John`                 |        |   |
+| `- item`                 | List item                | `fruits: <br> - apple`       |        |   |
+| `[a, b, c]`              | Inline list              | `colors: [red, green, blue]` |        |   |
+| `{key: val, key2: val2}` | Inline map               | `server: {ip: 127.0.0.1}`    |        |   |
+| `                        | `                        | Literal multi-line string    | `desc: | ` |
+| `>`                      | Folded multi-line string | `summary: >`                 |        |   |
+| `&anchor_name`           | Define anchor            | `defaults: &def {...}`       |        |   |
+| `*alias_name`            | Reference alias          | `copy: *def`                 |        |   |
+| `<<: *alias_name`        | Merge map from alias     | `map: <<: *def`              |        |   |
 ---
-
 ### Scalars (Strings, Numbers, Booleans)
-
 | Concept       | Example                    | Practice                                                                |
 | ------------- | -------------------------- | ----------------------------------------------------------------------- |
 | Plain String  | `name: John`               | Write a key `city` with value `New York`                                |
 | Quoted String | `greeting: "Hello\nWorld"` | Create a key `quote` with value `"Life is \"beautiful\""` (with quotes) |
-| Number        | `age: 42`                  | Add `pi: 3.14`                                                          |
+| Number        | `age: 32`                  | Add `pi: 3.14`                                                          |
 | Boolean       | `isActive: true`           | Add a boolean key `isAdmin` with false                                  |
 
 ---
-
 ### Lists (Arrays)
-
 | Concept          | Example                                | Practice                                                                                    |
 | ---------------- | -------------------------------------- | ------------------------------------------------------------------------------------------- |
 | Block Style List | `fruits: <br> - Apple <br> - Banana`   | Create a list `colors` with `red`, `green`, `blue`                                          |
 | Inline List      | `numbers: [1, 2, 3, 4]`                | Write an inline list of 3 cities                                                            |
 | List of Maps     | `users: <br> - name: Bob <br> age: 25` | Write a list `pets` with two items: `{type: dog, name: Rex}`, `{type: cat, name: Whiskers}` |
-
 ---
-
 ### Maps (Dictionaries)
 
 | Concept    | Example                                     | Practice                                           |
 | ---------- | ------------------------------------------- | -------------------------------------------------- |
 | Simple Map | `person: <br> name: Alice <br> age: 30`     | Write a map `database` with keys: host, port, user |
 | Inline Map | `settings: {env: production, debug: false}` | Create an inline map `server` with IP and location |
-
 ---
-
 ### Nested Maps & Lists
 
-| Concept          | Example                                                                            | Practice                                                                |
-| ---------------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Nested Structure | `team: <br> - name: Dev <br> members: <br> - Alice <br> - Bob`                     | Write a map `school` with classes, each having a list of students       |
-| Complex Nesting  | `company: <br> employees: <br> - name: Tom <br> skills: <br> - Java <br> - Docker` | Create a list `projects` where each project has a name and team members |
+| Concept          | Example                                                                            | Practice                                 |
+|----------------  | ---------------------------------------------------------------------------------- | ---------------------------------------- |
+| Nested Structure | `team: <br> - name: Dev <br> members: <br> - Alice <br> - Bob`                     | Write a map `school` with classes, each having a list of students |
+| Complex Nesting  | `company: <br> employees: <br> - name: Tom <br> skills: <br> - Java <br> - Docker` | Create a list`projects` where each project has a name & team members |
 
 ---
 
 ### Multi-line Strings
 
 | Concept                | Example                                                        | Practice                                                      |                                                               |                                                   |
-| ---------------------- | -------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------- |
-| Literal Block (`       | `)                                                             | `description:                                                 | <br> This is line 1.<br> This is line 2.`                     | Write a literal block `note` with 3 lines of text |
-| Folded Block (`>`)     | `summary: > <br> This is a folded string.<br> New lines fold.` | Create a folded block `message` with 2 lines that should fold |                                                               |                                                   |
-| Keep trailing newline  | Use `                                                          | +` to keep newline after block                                | Write a multi-line string `poem` that keeps trailing newlines |                                                   |
-| Strip trailing newline | Use `                                                          | -` to remove trailing newline                                 | Write a multi-line string `log` that strips trailing newlines |                                                   |
+| ---------------------- | -------------------------------------------------------------- | ------------------------------------------------------------- | 
+| Literal Block  (` | `) | `description   | <br> This is line 1.<br> This is line 2.`           | Write a literal block `note` with 3 lines of text |
+| Folded Block (`>`)     | `summary: > <br> This is a folded string.<br> New lines fold.` | Create a folded block `message` with 2 lines that should fold |        |                                                   |
+| Keep trailing newline  | Use `| +` to keep newline after block     | Write a multi-line string `poem` that keeps trailing newlin                                   |
+| Strip trailing newline | Use ` | -` to remove trailing newline   | Write a multi-line string `log` that strips trailing newlin                                       |
 
 ---
 
@@ -283,20 +285,5 @@ Common Gotchas & Tips
 
 ---
 
-#  Quick Syntax Reference
-
-| Syntax                   | Usage                    | Example                      |        |   |
-| ------------------------ | ------------------------ | ---------------------------- | ------ | - |
-| `key: value`             | Scalar key-value pair    | `name: John`                 |        |   |
-| `- item`                 | List item                | `fruits: <br> - apple`       |        |   |
-| `[a, b, c]`              | Inline list              | `colors: [red, green, blue]` |        |   |
-| `{key: val, key2: val2}` | Inline map               | `server: {ip: 127.0.0.1}`    |        |   |
-| `                        | `                        | Literal multi-line string    | `desc: | ` |
-| `>`                      | Folded multi-line string | `summary: >`                 |        |   |
-| `&anchor_name`           | Define anchor            | `defaults: &def {...}`       |        |   |
-| `*alias_name`            | Reference alias          | `copy: *def`                 |        |   |
-| `<<: *alias_name`        | Merge map from alias     | `map: <<: *def`              |        |   |
-
----
 
 
