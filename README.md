@@ -203,7 +203,7 @@ message2: *greet
 | Scalar            | plain / quoted       | single value (string, number) | `name: John`                |           |
 | List (Array)      | `-` or `[]`          | ordered sequence              | `fruits: [a, b, c]`         |           |
 | Map (Dictionary)  | `key: value` or `{}` | key-value pairs               | `person: {name: John}`      |           |
-| Multi-line String | `| `or`>`            | block style for text          | see above |
+| Multi-line String | `\| `or`>`            | block style for text          | see above |
 | Anchor            | `&anchor`            | assign a reference            | `defaults: &defaults {...}` |           |
 | Alias             | `*alias`             | reference anchor              | `<<: *defaults`             |           |
 
@@ -215,7 +215,7 @@ message2: *greet
 | Quoting strings                                      | Use double quotes if string has escape sequences or special chars |                                             |
 | Indentation                                          | Use consistent spaces (2 or 4), no tabs                           |                                             |
 | Lists of complex types                               | Indent nested maps inside lists properly                          |                                             |
-| Multi-line strings                                   |  Use literal (`|`) if you want to preserve newlines exactly      |
+| Multi-line strings                                   |  Use literal (`\|`) if you want to preserve newlines exactly      |
 | Folded strings                                       | Use folded (`>`) for paragraph-style text                         |                                             |
 | Anchors and aliases                                  | Avoid deep or circular references (can confuse parsers)           |                                             |
 | Merging maps                                         | Use `<<:` merge key to combine anchors                            |                                             |
@@ -228,7 +228,7 @@ message2: *greet
 | `- item`                 | List item                | `fruits: <br> - apple`       |        |   |
 | `[a, b, c]`              | Inline list              | `colors: [red, green, blue]` |        |   |
 | `{key: val, key2: val2}` | Inline map               | `server: {ip: 127.0.0.1}`    |        |   |
-| `                        | `                        | Literal multi-line string    | `desc: | ` |
+| ` \| `                   | Literal multi-line string    | `desc: \| `              |
 | `>`                      | Folded multi-line string | `summary: >`                 |        |   |
 | `&anchor_name`           | Define anchor            | `defaults: &def {...}`       |        |   |
 | `*alias_name`            | Reference alias          | `copy: *def`                 |        |   |
@@ -270,10 +270,10 @@ message2: *greet
 
 | Concept                | Example                                                        | Practice                                                      |                                                               |                                                   |
 | ---------------------- | -------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------- |
-| Literal Block (` | `)  | `description:     | <br> This is line 1.<br> This is line 2.`         | Write a literal block `note` with 3 lines of text |
+| Literal Block (` \| `)  | `description:     | <br> This is line 1.<br> This is line 2.`         | Write a literal block `note` with 3 lines of text |
 | Folded Block (`>`)     | `summary: > <br> This is a folded string.<br> New lines fold.` | Create a folded block `message` with 2 lines that should fold |                                                               |                                                   |
-| Keep trailing newline  | Use `| +` to keep newline after block  | Write a multi-line string `poem` that keeps trailing newlines |                                                   |
-| Strip trailing newline | Use `| -` to remove trailing newline  | Write a multi-line string `log` that strips trailing newlines |                                                   |
+| Keep trailing newline  | Use `\| +` to keep newline after block  | Write a multi-line string `poem` that keeps trailing newlines |                                                   |
+| Strip trailing newline | Use `\| -` to remove trailing newline  | Write a multi-line string `log` that strips trailing newlines |                                                   |
 
 ---
 ---
