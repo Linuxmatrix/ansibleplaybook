@@ -203,7 +203,7 @@ message2: *greet
 | Scalar            | plain / quoted       | single value (string, number) | `name: John`                |           |
 | List (Array)      | `-` or `[]`          | ordered sequence              | `fruits: [a, b, c]`         |           |
 | Map (Dictionary)  | `key: value` or `{}` | key-value pairs               | `person: {name: John}`      |           |
-| Multi-line String | `| `or`>`            | block style for text          | see above |
+| Multi-line String | `\| `or`>`            | block style for text          | see above |
 | Anchor            | `&anchor`            | assign a reference            | `defaults: &defaults {...}` |           |
 | Alias             | `*alias`             | reference anchor              | `<<: *defaults`             |           |
 
