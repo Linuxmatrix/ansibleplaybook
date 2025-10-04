@@ -215,7 +215,7 @@ message2: *greet
 | Quoting strings                                      | Use double quotes if string has escape sequences or special chars |                                             |
 | Indentation                                          | Use consistent spaces (2 or 4), no tabs                           |                                             |
 | Lists of complex types                               | Indent nested maps inside lists properly                          |                                             |
-| Multi-line strings                                   | Use literal (` | `) if you want to preserve newlines exactly      |
+| Multi-line strings                                   |  Use literal (`|`) if you want to preserve newlines exactly      |
 | Folded strings                                       | Use folded (`>`) for paragraph-style text                         |                                             |
 | Anchors and aliases                                  | Avoid deep or circular references (can confuse parsers)           |                                             |
 | Merging maps                                         | Use `<<:` merge key to combine anchors                            |                                             |
